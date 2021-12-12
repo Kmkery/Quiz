@@ -64,10 +64,10 @@ button {
     color: rgb(44, 41, 41);
     font-size: 1.1em;
     font-weight: bolder;
-    cursor: pointer; /* alteração feita */
+    cursor: pointer; 
 }
 
-.feedback-message { /* alterado para p oculto */
+.feedback-message { 
     margin: 20px 10px 10px 20px;
     padding: 20px;
   
