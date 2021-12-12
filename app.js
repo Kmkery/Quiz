@@ -1,52 +1,40 @@
 const form = document.querySelector('form')
-const description = document.querySelector('.description-box')
 const formBox = document.querySelector('.form-box')
-
-const feedback = document.createElement('p')
-feedback.classList.add('feedback')
-const helpMessage = document.createElement('p')
-helpMessage.classList.add('help-message')
+const feedbackBox = document.querySelector('.feedback-box') 
 
 const correctAnswers = ['1', '2', '1', '2']
 
-const showFeedback = score =>{
-  const feedbackMessages = {
-    badScore: `${score}% de acerto, não foi desta vez. Mas não desista, tente de novo ;)`,
-    weakScore: `${score}% de acerto... que tal tentar de novo? =)`,
-    goodScore: `Você acertou ${score}%. Muito bom! =)`,
-    excelentScore: `Uau, você acertou ${score}%. Parabéns! =D`
-  }
-  const {badScore, weakScore, goodScore, excelentScore} = feedbackMessages
-
-  if(score === 0){
-    feedback.textContent = badScore
-  } else if(score === 25){
-    feedback.textContent = weakScore
-  } else if(score === 100){
-    feedback.textContent = excelentScore
-  } else {
-    feedback.textContent = goodScore
-  }
-
-  formBox.remove()
-  helpMessage.textContent = `Recarregue a página para tentar de novo`
-
-  description.insertAdjacentElement('afterend', feedback)
-  feedback.insertAdjacentElement('afterend', helpMessage)
+const getFeedbackMessage = score =>({ 
+  
+    0: `${score}% de acerto, não foi desta vez. Mas não desista, tente de novo ;)`,
+    25: `${score}% de acerto... que tal tentar de novo? =)`,
+    50: `Você acertou ${score}%. Muito bom! =)`,
+    75: `Você acertou ${score}%. Muito bom! =)`
+  })[score] || `Uau, você acertou ${score}%. Parabéns! =D`
+  
+const changeDisplay = () => {
+  formBox.classList.toggle('hidden')
+  feedbackBox.classList.toggle('hidden')
 }
 
-const scoreProcessing = event => {
+const showFeedback = score => {
+  const feedbackMessage = feedbackBox.querySelector('.feedback-message')
+    feedbackMessage.textContent = getFeedbackMessage(score)
+  changeDisplay() 
+}
+
+const handleQuizSubmit = event => { // alterado o nome!
   event.preventDefault()
   let score = 0
-  const userResponses = [
+  const userAnswers = [
     form.q1.value,
     form.q2.value,
     form.q3.value,
     form.q4.value
   ]
 
-  correctAnswers.forEach((correctAnswer, index) => {
-    if (correctAnswer === userResponses[index]){
+  correctAnswers.forEach((correctAnswer, index) => { // nome ok
+    if (correctAnswer === userAnswers[index]){
       score +=25
     }
   })
@@ -54,5 +42,8 @@ const scoreProcessing = event => {
   showFeedback(score)
 }
 
-form.addEventListener('submit', scoreProcessing)
+form.addEventListener('submit', handleQuizSubmit)
 
+const backButton = document.querySelector('.back-button')
+backButton.addEventListener('click', changeDisplay)
+ 
