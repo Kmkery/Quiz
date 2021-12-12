@@ -52,20 +52,22 @@ body {
 .options {
     padding: 6px 0;
     font-size: 1em;
+  
 }
 .button-box {
     text-align: center;
 }
 
 button {
-    padding: 15px 40px;
+    padding: 10px 40px;
     border-radius: 15px;
     color: rgb(44, 41, 41);
     font-size: 1.1em;
     font-weight: bolder;
+    cursor: pointer; /* alteração feita */
 }
 
-.feedback {
+.feedback-message { /* alterado para p oculto */
     margin: 20px 10px 10px 20px;
     padding: 20px;
   
@@ -79,6 +81,11 @@ button {
 }
 
 .help-message {
+    margin: 20px;
     text-align: center;
     font-size: 1.1em;
+}
+
+.hidden {
+    display: none;
 }
