@@ -12,18 +12,18 @@ const getFeedbackMessage = score =>({
     75: `Você acertou ${score}%. Muito bom! =)`
   })[score] || `Uau, você acertou ${score}%. Parabéns! =D`
   
-const changeDisplay = () => {
+const changeFeedbackDisplay = () => {
   formBox.classList.toggle('hidden')
   feedbackBox.classList.toggle('hidden')
 }
 
 const showFeedback = score => {
   const feedbackMessage = feedbackBox.querySelector('.feedback-message')
-    feedbackMessage.textContent = getFeedbackMessage(score)
-  changeDisplay() 
+  feedbackMessage.textContent = getFeedbackMessage(score)
+  changeFeedbackDisplay() 
 }
 
-const handleQuizSubmit = event => { // alterado o nome!
+const handleQuizSubmit = event => {
   event.preventDefault()
   let score = 0
   const userAnswers = [
@@ -33,7 +33,7 @@ const handleQuizSubmit = event => { // alterado o nome!
     form.q4.value
   ]
 
-  correctAnswers.forEach((correctAnswer, index) => { // nome ok
+  correctAnswers.forEach((correctAnswer, index) => { 
     if (correctAnswer === userAnswers[index]){
       score +=25
     }
@@ -45,5 +45,5 @@ const handleQuizSubmit = event => { // alterado o nome!
 form.addEventListener('submit', handleQuizSubmit)
 
 const backButton = document.querySelector('.back-button')
-backButton.addEventListener('click', changeDisplay)
+backButton.addEventListener('click', changeFeedbackDisplay)
  
