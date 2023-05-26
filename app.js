@@ -8,8 +8,8 @@ const getFeedbackMessage = score =>({
   
     0: `${score}% de acerto, não foi desta vez. Mas não desista, tente de novo ;)`,
     25: `${score}% de acerto... que tal tentar de novo? =)`,
-    50: `Você acertou ${score}%. Muito bom! =)`,
-    75: `Você acertou ${score}%. Muito bom! =)`
+    50: `Você acertou ${score}%, muito bom! =)`,
+    75: `Você acertou ${score}%, muito bom! =)`
   })[score] || `Uau, você acertou ${score}%. Parabéns! =D`
   
 const changeFeedbackDisplay = () => {
